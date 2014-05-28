@@ -19,19 +19,19 @@
 
 # org.apache.cordova.device-motion
 
-這個外掛程式提供了對設備的加速度計的訪問。 加速度計是動作感應器檢測到的更改 (*三角洲*) 在相對於當前的設備方向，在三個維度沿*x*、 *y*和*z*軸運動。
+这个插件提供了对设备的加速度计的访问。 加速度计是动作感应器检测到的更改 (*三角洲*) 在相对于当前的设备方向，在三个维度沿*x*、 *y*和*z*轴运动。
 
-## 安裝
+## 安装
 
     cordova plugin add org.apache.cordova.device-motion
     
 
-## 支援的平臺
+## 支持的平台
 
-*   亞馬遜火 OS
-*   Android 系統
+*   亚马逊火 OS
+*   Android 系统
 *   黑莓 10
-*   火狐瀏覽器作業系統
+*   火狐浏览器操作系统
 *   iOS
 *   Tizen
 *   Windows Phone 7 和 8
@@ -43,15 +43,15 @@
 *   navigator.accelerometer.watchAcceleration
 *   navigator.accelerometer.clearWatch
 
-## 物件
+## 对象
 
-*   加速度
+*   加速器
 
 ## navigator.accelerometer.getCurrentAcceleration
 
-獲取當前加速沿*x*、 *y*和*z*軸。
+沿着*x*、 *y*和*z*轴，获取当前的加速度数据。
 
-這些加速度值將返回到 `accelerometerSuccess` 回呼函數。
+这些加速度值将返回到 `accelerometerSuccess` 回调函数。
 
     navigator.accelerometer.getCurrentAcceleration(accelerometerSuccess, accelerometerError);
     
@@ -74,25 +74,25 @@
 
 ### iOS 的怪癖
 
-*   iOS 不會認識到在任何給定的點獲取當前加速度的概念。
+*   iOS 不确定在任何给定的点获取当前加速器的概念。
 
-*   你必須看加速和捕獲的資料在特定的時間間隔。
+*   你必须在给定的时间间隔内，查看加速器和捕获的数据。
 
-*   因此， `getCurrentAcceleration` 收益率從報告的最後一個值的函數 `watchAccelerometer` 調用。
+*   因此，这个`getCurrentAcceleration`函数产生最后一个自 `watchAccelerometer` 请求的值。
 
 ## navigator.accelerometer.watchAcceleration
 
-檢索該設備的當前 `Acceleration` 間隔時間定期，執行 `accelerometerSuccess` 回呼函數每次。 指定的時間間隔，以毫秒為單位通過 `acceleratorOptions` 物件的 `frequency` 參數。
+检索该设备的当前 `Acceleration` 间隔时间定期，执行 `accelerometerSuccess` 回调函数每次。 指定的时间间隔，以毫秒为单位通过 `acceleratorOptions` 对象的 `frequency` 参数。
 
-返回的觀看 ID 引用加速度計的手錶時間間隔，並可以用 `navigator.accelerometer.clearWatch` 來停止看加速度計。
+返回的观看 ID 引用加速度计的手表时间间隔，并可以用 `navigator.accelerometer.clearWatch` 来停止看加速度计。
 
     var watchID = navigator.accelerometer.watchAcceleration(accelerometerSuccess,
                                                            accelerometerError,
                                                            [accelerometerOptions]);
     
 
-*   **accelerometerOptions**： 具有以下可選的鍵的物件： 
-    *   **頻率**： 經常如何檢索 `Acceleration` 以毫秒為單位。*（人數）*（預設值： 10000）
+*   **accelerometerOptions**： 具有以下可选的键的对象： 
+    *   **frequency**：多久在千分之一秒内检索这个 `Acceleration`。 *(Number)* (Default: 10000)
 
 ### 示例
 
@@ -114,11 +114,11 @@
 
 ### iOS 的怪癖
 
-API 呼叫成功的回呼函數的時間間隔的要求，但到 40ms年之間設備限制所請求的範圍和 1000ms。 例如，如果請求的時間間隔為 3 秒，(3000ms) API 請求資料從設備每隔 1 秒，但只有執行成功回檔每隔 3 秒。
+API 调用在请求时间间隔内的成功回调函数，但到这个设备请求的限制范围是在 40ms和1000ms之间。 例如，如果请求的时间间隔为 3 秒(3000ms)， API 每隔 1 秒从设备中请求数据，但只有每隔 3 秒才执行成功回调。
 
 ## navigator.accelerometer.clearWatch
 
-停止看 `Acceleration` 引用的 `watchID` 參數。
+停止查看 `Acceleration` 引用的 `watchID` 参数。
 
     navigator.accelerometer.clearWatch(watchID);
     
@@ -136,11 +136,11 @@ API 呼叫成功的回呼函數的時間間隔的要求，但到 40ms年之間�
 
 ## 加速度
 
-包含 `Accelerometer` 在時間中的特定點捕獲的資料。 加速度值包括引力的影響 (9.81 m/s ^2)，因此當設備謊言平面和麵朝上， *x*、 *y*，和*z*返回的值應該是 `` ， `` ，和`9.81`.
+包含 `Accelerometer` 特定时间点采集到的加速器数据。 加速度值包括引力的影响 (9.81 m/s ^2)，因此当设备谎言平面和面朝上， *x*、 *y*，和*z*返回的值应该是 `` ， `` ，和`9.81`.
 
-### 屬性
+### 属性
 
-*   **x**： 在 X 軸上的加速度量。（在 m/s ^2)*（人數）*
-*   **y**： 在 y 軸上的加速度量。（在 m/s ^2)*（人數）*
-*   **z**： 在 Z 軸上的加速度量。（在 m/s ^2)*（人數）*
-*   **時間戳記**： 創建時間戳記以毫秒為單位。*() DOMTimeStamp*
+*   **x**： 在 x 轴上的加速度量。(in m/s ^2)*(Number)*
+*   **y**： 在 y 轴上的加速度量。(in m/s ^2)*(Number)*
+*   **z**： 在 z 轴上的加速度量。(in m/s ^2)*(Number)*
+*   **timestamp**： 创建时间以毫秒为单位。*(DOMTimeStamp)*
